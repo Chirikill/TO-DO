@@ -18,7 +18,19 @@ to-do website(application) to suit mine needs
 *sudo apt autoremove* - Удаляет зависимости (библиотеки), которые были установлены вместе с Git, но теперь, после удаления Git, они стали не нужны.\
 *sudo apt clean* - это команда для очистки кэша загруженных пакетов.\
 *sudo apt update* - обновляет список доступных пакетов (программ) в вашей системе.
-<img width="4800" height="1800" alt="image" src="https://github.com/user-attachments/assets/a7f510e0-6afd-4528-8fbe-ec165f801db6" />
+<img width="865" height="552" alt="image" src="https://github.com/user-attachments/assets/d0d2971a-9522-4061-9fad-2795a48f862c" />
+<img width="764" height="135" alt="image" src="https://github.com/user-attachments/assets/a7b6e50a-95c4-4cf0-8a63-967943c7d2ef" />
+
+!была проблема что VS Code не видел SSH-ключ. Также ссора ключей, был установлен другой ключ
+Решение: 
+<img width="930" height="706" alt="2026-06-27_18-12-56" src="https://github.com/user-attachments/assets/3fee64ba-4432-4024-8a35-d16fb899c7f3" />
+*ssh-agent* - это системная служба Windows, которая управляет закрытыми SSH-ключами и предоставляет их для аутентификации при обращении к удалённым репозиториям (например, GitHub) через протокол SSH.
+*Set-Service -Name ssh-agent -StartupType Manual* - устанавливает тип запуска службы ssh-agent в значение Manual (вручную)
+*Start-Service ssh-agent* - запуск службы
+*Get-Service ssh-agent* - проверка состояния службы
+*ssh-add id_ed25519* - добавление ключа в SSH-агент
+
+
 
 
 
