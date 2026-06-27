@@ -1,0 +1,25 @@
+/* ===== БАЗОВЫЕ СТИЛИ ===== */
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #f4f7fc;
+    margin: 0;
+    padding: 20px;
+    color: #333;
+}
+
+.container {
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+h1 {
+    text-align: center;
+    color: #2c3e50;
+}
+
+/* Общие стили для всех списков */
+ul {
+    list-style: none;
+    padding: 0;
+}

@@ -1,0 +1,52 @@
+/* ===== КОМПОНЕНТЫ ===== */
+
+/* Секция добавления */
+.add-section {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 20px;
+}
+
+.add-section input {
+    flex: 1;
+    padding: 12px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    font-size: 16px;
+}
+
+.add-section button {
+    padding: 12px 24px;
+    background-color: #3498db;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: background-color 0.2s;
+}
+
+.add-section button:hover {
+    background-color: #2980b9;
+}
+
+/* Стили для селекта цвета */
+.add-section select {
+    padding: 12px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    font-size: 16px;
+    background-color: white;
+    cursor: pointer;
+    min-width: 120px;
+}
+
+.add-section select:hover {
+    border-color: #3498db;
+}
+
+.add-section select:focus {
+    outline: none;
+    border-color: #3498db;
+    box-shadow: 0 0 0 3px rgba(52, 152, 219, 0.2);
+}

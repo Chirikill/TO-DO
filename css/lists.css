@@ -1,0 +1,157 @@
+/* ===== СПИСКИ ===== */
+
+/* Блок "Сегодня" */
+.today-section {
+    background-color: #fff3cd;
+    border-left: 5px solid #ffc107;
+    padding: 10px 20px;
+    border-radius: 8px;
+    margin-bottom: 30px;
+}
+
+.today-section h2 {
+    margin-top: 5px;
+    color: #856404;
+}
+
+/* Блок "Все темы" */
+.all-items-section {
+    background: white;
+    padding: 20px;
+    border-radius: 12px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+    margin-bottom: 20px;
+}
+
+/* Элементы списков */
+li {
+    background: white;
+    padding: 12px 15px;
+    margin-bottom: 8px;
+    border-radius: 8px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.05);
+    border-left: 4px solid #3498db;
+}
+
+li .info {
+    display: flex;
+    flex-direction: column;
+}
+
+li .topic {
+    font-weight: 600;
+}
+
+li .date {
+    font-size: 12px;
+    color: #888;
+}
+
+/* Элементы списков с цветом */
+li {
+    background: white;
+    padding: 12px 15px;
+    margin-bottom: 8px;
+    border-radius: 8px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.05);
+    border-left: 4px solid #3498db; /* цвет будет меняться через JS */
+    transition: border-left-color 0.3s ease;
+}
+
+li .color-preview {
+    width: 16px;
+    height: 16px;
+    border-radius: 50%;
+    display: inline-block;
+    margin-right: 10px;
+    flex-shrink: 0;
+}
+
+/* ===== КАСТОМНЫЙ ЧЕКБОКС ===== */
+
+/* Скрываем стандартный чекбокс */
+.custom-checkbox {
+    display: none;
+}
+
+/* Стили для кастомного квадрата */
+.checkbox-label {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 24px;
+    height: 24px;
+    border: 2px solid #ccc;
+    border-radius: 4px;
+    background-color: white;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    flex-shrink: 0;
+    margin-right: 12px;
+    font-size: 16px;
+    color: white;
+    user-select: none;
+}
+
+/* Ховер эффект */
+.checkbox-label:hover {
+    border-color: #3498db;
+    background-color: #f0f8ff;
+}
+
+/* Состояние "чекнуто" */
+.custom-checkbox:checked + .checkbox-label {
+    background-color: #2ecc71;
+    border-color: #2ecc71;
+    color: white;
+}
+
+/* Галочка внутри квадрата (через псевдоэлемент) */
+.custom-checkbox:checked + .checkbox-label::after {
+    content: "✓";
+    font-size: 18px;
+    font-weight: bold;
+    color: white;
+}
+
+/* Для завершённых задач — зачёркнутый текст */
+.task-item.completed .topic {
+    text-decoration: line-through;
+    opacity: 0.6;
+}
+
+/* Вся строка задачи с чекбоксом */
+.task-item {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    gap: 10px;
+}
+
+.task-item .info {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+.task-item .info .topic {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.task-item .info .date {
+    font-size: 12px;
+    color: #888;
+}
+
+/* Кнопка удаления — теперь справа */
+.task-item .delete-btn {
+    margin-left: auto;
+}

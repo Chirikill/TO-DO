@@ -1,0 +1,40 @@
+/* ===== СТАТУСЫ И КНОПКИ ===== */
+
+/* Бейджи статусов */
+li .status-badge {
+    font-size: 12px;
+    padding: 4px 8px;
+    border-radius: 20px;
+    background-color: #e74c3c;
+    color: white;
+    margin-left: 10px;
+    white-space: nowrap;
+}
+
+li .status-badge.done {
+    background-color: #2ecc71;
+}
+
+li .status-badge.waiting {
+    background-color: #6c757d;
+}
+
+/* Кнопки в списках */
+button.delete-btn,
+button.complete-btn {
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-size: 16px;
+    padding: 5px 10px;
+    border-radius: 4px;
+    transition: background-color 0.2s;
+}
+
+button.delete-btn:hover {
+    background: #fee;
+}
+
+button.complete-btn:hover {
+    background: #e8f5e9;
+}

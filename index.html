@@ -3,15 +3,56 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>TO-DO Список</title>
+    <title>Система повторений</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <h1>Мои задачи</h1>
-    <input type="text" id="taskInput" placeholder="Введите задачу...">
-    <button id="addTaskBtn">Добавить</button>
-    <ul id="taskList"></ul>
+    <div class="container">
+        <h1>📚 Интервальное повторение</h1>
+        
+        <!-- Блок добавления -->
+        <div class="add-section">
+            <input type="text" id="topicInput" placeholder="Введите тему для запоминания...">
+            <select id="colorSelect">
+                <option value="#3498db"> Синий</option>
+                <option value="#e74c3c"> Красный</option>
+                <option value="#2ecc71"> Зелёный</option>
+                <option value="#f39c12"> Оранжевый</option>
+                <option value="#9b59b6"> Фиолетовый</option>
+                <option value="#1abc9c"> Бирюзовый</option>
+                <option value="#e67e22"> Жёлтый</option>
+                <option value="#34495e"> Черный</option>
+            </select>
+            <button id="addBtn">Добавить</button>
+        </div>
 
-    <script src="script.js"></script>
+        <!-- КАЛЕНДАРЬ (теперь наверху) -->
+        <div class="calendar-section">
+            <div class="calendar-header">
+                <button id="prevMonthBtn">◀</button>
+                <h2 id="calendarTitle">Январь 2026</h2>
+                <button id="nextMonthBtn">▶</button>
+            </div>
+            <div id="calendarContainer"></div>
+            <!-- Блок с задачами на выбранный день -->
+            <div id="dayTasksContainer" class="day-tasks-container">
+                <h3>📌 Задачи на <span id="selectedDateLabel"></span></h3>
+                <ul id="dayTasksList"></ul>
+            </div>
+        </div>
+
+        <!-- Блок "Повторить сегодня" (Срочные задачи) -->
+        <div class="today-section">
+            <h2>🔔 Повторить сегодня</h2>
+            <ul id="todayList"></ul>
+        </div>
+
+        <!-- Блок "Все темы" (теперь внизу) -->
+        <div class="all-items-section">
+            <h2>📖 Все темы</h2>
+            <ul id="allItemsList"></ul>
+        </div>
+    </div>
+    <script type="module" src="js/app.js"></script>
 </body>
 </html>
