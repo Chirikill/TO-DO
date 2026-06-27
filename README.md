@@ -23,11 +23,11 @@ to-do website(application) to suit mine needs
 
 !была проблема что VS Code не видел SSH-ключ. Также ссора ключей, был установлен другой ключ
 Решение: 
-<img width="930" height="706" alt="2026-06-27_18-12-56" src="https://github.com/user-attachments/assets/3fee64ba-4432-4024-8a35-d16fb899c7f3" />
-*ssh-agent* - это системная служба Windows, которая управляет закрытыми SSH-ключами и предоставляет их для аутентификации при обращении к удалённым репозиториям (например, GitHub) через протокол SSH.
-*Set-Service -Name ssh-agent -StartupType Manual* - устанавливает тип запуска службы ssh-agent в значение Manual (вручную)
-*Start-Service ssh-agent* - запуск службы
-*Get-Service ssh-agent* - проверка состояния службы
+<img width="930" height="706" alt="2026-06-27_18-12-56" src="https://github.com/user-attachments/assets/3fee64ba-4432-4024-8a35-d16fb899c7f3" width="50%"/>
+*ssh-agent* - это системная служба Windows, которая управляет закрытыми SSH-ключами и предоставляет их для аутентификации при обращении к удалённым репозиториям (например, GitHub) через протокол SSH.\
+*Set-Service -Name ssh-agent -StartupType Manual* - устанавливает тип запуска службы ssh-agent в значение Manual (вручную)\
+*Start-Service ssh-agent* - запуск службы\
+*Get-Service ssh-agent* - проверка состояния службы\
 *ssh-add id_ed25519* - добавление ключа в SSH-агент
 
 
