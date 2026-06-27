@@ -21,5 +21,8 @@ sudo запрашивает пароль
 - openssl (для шифрования)
 - и т.д.
 sudo apt update - скачивание свежего каталога с серверов (в том числе git)
+<img width="1440" height="275" alt="image" src="https://github.com/user-attachments/assets/fd25b430-15df-4967-a9a2-2448e796e1a3" />
+
+
 
 
