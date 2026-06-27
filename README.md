@@ -18,7 +18,7 @@ to-do website(application) to suit mine needs
 *sudo apt autoremove* - Удаляет зависимости (библиотеки), которые были установлены вместе с Git, но теперь, после удаления Git, они стали не нужны.\
 *sudo apt clean* - это команда для очистки кэша загруженных пакетов.\
 *sudo apt update* - обновляет список доступных пакетов (программ) в вашей системе.
-<img width="465" alt="image" src="https://github.com/user-attachments/assets/d0d2971a-9522-4061-9fad-2795a48f862c" />
+<img width="465" alt="image" src="https://github.com/user-attachments/assets/d0d2971a-9522-4061-9fad-2795a48f862c" />\
 <img width="465" alt="image" src="https://github.com/user-attachments/assets/a7b6e50a-95c4-4cf0-8a63-967943c7d2ef" />
 
 ### 1.2 проблема: VS Code не видел SSH-ключ. Также ссора ключей, был установлен другой ключ\
