@@ -14,10 +14,13 @@ to-do website(application) to suit mine needs
 
 1.1 Установка и настройка Git в WSL
 были полностью удален Git и была проведена чистка мусора (ненужные зависимости)
-<img width="640" height="511" alt="image" src="https://github.com/user-attachments/assets/cd1ef25b-4e3d-4acb-b022-d8f1e65df5fe" />
-sudo apt autoremove - Удаляет зависимости (библиотеки), которые были установлены вместе с Git, но теперь, после удаления Git, они стали не нужны.
-sudo apt clean - это команда для очистки кэша загруженных пакетов.
-sudo apt update - обновляет список доступных пакетов (программ) в вашей системе.
+<img width="640" height="511" alt="image" src="https://github.com/user-attachments/assets/cd1ef25b-4e3d-4acb-b022-d8f1e65df5fe" />\
+*sudo apt autoremove* - Удаляет зависимости (библиотеки), которые были установлены вместе с Git, но теперь, после удаления Git, они стали не нужны.\
+*sudo apt clean* - это команда для очистки кэша загруженных пакетов.\
+*sudo apt update* - обновляет список доступных пакетов (программ) в вашей системе.
+<img width="4800" height="1800" alt="image" src="https://github.com/user-attachments/assets/a7f510e0-6afd-4528-8fbe-ec165f801db6" />
+
+
 
 
 
