@@ -1,101 +1,81 @@
 // ===== МОДУЛЬ ЗАДАЧ =====
 
+function normalizeDate(date) {
+    const d = new Date(date);
+    d.setHours(0, 0, 0, 0);
+    return d;
+}
+
 export function addDays(date, days) {
     const newDate = new Date(date);
     newDate.setDate(newDate.getDate() + days);
     return newDate;
 }
 
-// Получить дату последнего выполнения задачи
-function getLastCompletedDate(item) {
-    if (!item.completedDates || item.completedDates.length === 0) {
-        return null;
-    }
-    const sorted = [...item.completedDates].sort();
-    return new Date(sorted[sorted.length - 1]);
+// ============================================================
+// ФИКСИРОВАННЫЕ ДАТЫ ПОВТОРЕНИЙ (от studyDate)
+// ============================================================
+
+// Получить ВСЕ даты повторений (фиксированные!)
+export function getRepeatDates(item) {
+    const stages = [0, 1, 4, 11, 41];
+    const studyDate = normalizeDate(item.studyDate);
+    const dates = [];
+    
+    stages.forEach(days => {
+        dates.push(normalizeDate(addDays(studyDate, days)));
+    });
+    
+    return dates;
 }
 
-// Получить следующую дату повторения
+// Получить следующую дату повторения (которая ещё не выполнена)
 export function getNextRepeatDate(item) {
-    const stages = [1, 3, 7, 30];
-    const lastDate = getLastCompletedDate(item);
+    const today = normalizeDate(new Date());
+    const allDates = getRepeatDates(item);
     
-    if (!lastDate) {
-        const studyDate = new Date(item.studyDate);
-        studyDate.setHours(0, 0, 0, 0);
-        return addDays(studyDate, 1);
+    // Находим первую дату, которая ещё не выполнена
+    for (const date of allDates) {
+        const dateStr = date.toISOString();
+        if (!item.completedDates.includes(dateStr)) {
+            // Если дата уже прошла → показываем сегодня
+            if (date.getTime() <= today.getTime()) {
+                return today;
+            }
+            return date;
+        }
     }
-
-    const completedCount = item.completedDates.length;
-    const nextStageIndex = Math.min(completedCount, stages.length - 1);
-    const daysToAdd = stages[nextStageIndex];
     
-    return addDays(lastDate, daysToAdd);
+    // Все даты выполнены
+    return null;
 }
 
-// Получить статус задачи на сегодня
 export function getStatus(item) {
-    const today = new Date();
-    today.setHours(0, 0, 0, 0);
-
+    const today = normalizeDate(new Date());
     const todayStr = today.toISOString();
+
+    // 1. Проверяем, выполнена ли задача сегодня
     if (item.completedDates.includes(todayStr)) {
         return 'completed-today';
     }
 
-    const nextDate = getNextRepeatDate(item);
-    if (nextDate && nextDate.getTime() === today.getTime()) {
-        return 'repeat';
+    // 2. Проверяем, есть ли сегодня повторение (по фиксированному расписанию)
+    const allDates = getRepeatDates(item);
+    for (const date of allDates) {
+        if (date.getTime() === today.getTime()) {
+            const dateStr = date.toISOString();
+            if (!item.completedDates.includes(dateStr)) {
+                return 'repeat';
+            }
+        }
     }
 
     return 'waiting';
 }
 
-// Получить ВСЕ даты повторений (для календаря)
-export function getRepeatDates(item) {
-    const stages = [1, 3, 7, 30];
-    const dates = [];
-    
-    // Если задача полностью завершена (все 4 повторения сделаны)
-    if (item.completedDates && item.completedDates.length >= stages.length) {
-        return dates; // Возвращаем пустой массив — больше нет повторений
-    }
-
-    // Начинаем с даты изучения
-    let currentDate = new Date(item.studyDate);
-    currentDate.setHours(0, 0, 0, 0);
-
-    // Если есть выполненные повторения — начинаем с последней выполненной даты
-    if (item.completedDates && item.completedDates.length > 0) {
-        const sorted = [...item.completedDates].sort();
-        const lastCompleted = new Date(sorted[sorted.length - 1]);
-        lastCompleted.setHours(0, 0, 0, 0);
-        currentDate = lastCompleted;
-    }
-
-    // Определяем, сколько повторений уже сделано
-    const completedCount = item.completedDates ? item.completedDates.length : 0;
-    
-    // Берём интервалы, начиная с того, который ещё не использован
-    // Если completedCount = 0 → берём все интервалы [1, 3, 7, 30]
-    // Если completedCount = 1 → берём [3, 7, 30] (первое уже сделано)
-    // Если completedCount = 2 → берём [7, 30] и т.д.
-    const remainingStages = stages.slice(completedCount);
-    
-    // Строим даты для оставшихся повторений
-    let nextDate = currentDate;
-    remainingStages.forEach(days => {
-        nextDate = addDays(nextDate, days);
-        dates.push(nextDate);
-    });
-
-    return dates;
-}
-
 // Получить задачи на конкретную дату (для календаря)
 export function getTasksForDate(date, items) {
-    const target = new Date(date);
-    target.setHours(0, 0, 0, 0);
+    const target = normalizeDate(date);
     const result = [];
 
     items.forEach(item => {
@@ -103,6 +83,7 @@ export function getTasksForDate(date, items) {
         dates.forEach(d => {
             if (d.getTime() === target.getTime()) {
                 const dateStr = d.toISOString();
+                // Показываем задачу, если она ещё не выполнена на эту дату
                 if (!item.completedDates.includes(dateStr)) {
                     result.push(item);
                 }
@@ -115,8 +96,7 @@ export function getTasksForDate(date, items) {
 
 // Получить цвета для даты (для календаря)
 export function getColorsForDate(date, items) {
-    const target = new Date(date);
-    target.setHours(0, 0, 0, 0);
+    const target = normalizeDate(date);
     const colors = new Set();
 
     items.forEach(item => {
