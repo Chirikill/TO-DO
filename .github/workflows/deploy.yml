@@ -1,0 +1,25 @@
+# файл описывает автоматический процесс
+
+name: Deploy to GitHub Pages
+
+on:
+  push:
+    branches:
+      - main   # запускается при пуше в main
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest   # используется Ubuntu
+
+    steps:
+      # 1. клонируем репозиторий
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      # 2. деплоим на GitHub Pages
+      - name: Deploy to GitHub Pages
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./          # публикуем всё из корня
+          publish_branch: gh-pages # ветка для деплоя (создаётся автоматически)
