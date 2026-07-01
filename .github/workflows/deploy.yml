@@ -4,22 +4,30 @@ name: Deploy to GitHub Pages
 
 on:
   push:
-    branches:
-      - main   # запускается при пуше в main
+    branches: [ main ]
 
 jobs:
   deploy:
-    runs-on: ubuntu-latest   # используется Ubuntu
+    runs-on: ubuntu-latest
+    
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+
+    permissions:
+      contents: read
+      pages: write
+      id-token: write
 
     steps:
-      # 1. клонируем репозиторий
       - name: Checkout repository
         uses: actions/checkout@v4
 
-      # 2. деплоим на GitHub Pages
-      - name: Deploy to GitHub Pages
-        uses: peaceiris/actions-gh-pages@v3
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v3
         with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: ./          # публикуем всё из корня
-          publish_branch: gh-pages # ветка для деплоя (создаётся автоматически)
+          path: ./
+
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
